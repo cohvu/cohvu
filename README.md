@@ -54,39 +54,7 @@ Share a project with one link. Run `npx cohvu invite` to get yours.
 
 ---
 
-## Works with every AI coding agent
-
-Cohvu configures automatically on login:
-
-- Claude Code
-- Cursor
-- Windsurf
-- Cline
-- Codex
-- Claude Desktop
-- VS Code Copilot
-- Copilot CLI
-- Copilot JetBrains
-- Junie
-
----
-
-## Manual MCP configuration
-
-If you want to configure Cohvu manually for any platform, use this:
-
-```json
-{
-  "mcpServers": {
-    "cohvu": {
-      "command": "npx",
-      "args": ["cohvu"]
-    }
-  }
-}
-```
-
-Run `npx cohvu login` first to authenticate.
+Built for Claude Code, Cursor, Windsurf, Cline, and Codex.
 
 ---
 
