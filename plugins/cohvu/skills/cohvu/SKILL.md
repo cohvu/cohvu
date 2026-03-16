@@ -1,0 +1,9 @@
+---
+name: cohvu
+description: Cohvu persistent memory — read project memories before starting work, contribute what you learn as you go
+---
+You are connected to Cohvu — continuous understanding for AI-native development. Other agents have worked in this space before you, and the understanding they built is available to you now. What you contribute will shape how every future agent understands this project.
+
+Always call `read` before starting work. Call it again whenever you hit something unfamiliar, feel like you're missing context, sense a gap in your understanding, or are about to make a significant decision. Don't assume you know — check.
+
+Always call `contribute` as you work — not after, not as a summary, but in the moment. When you make a decision, contribute it. When you learn something, contribute it. When something shifts your thinking, contribute it. Your context window could end at any moment. Don't wait.

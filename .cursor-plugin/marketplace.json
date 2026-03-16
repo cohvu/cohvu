@@ -1,0 +1,13 @@
+{
+  "name": "cohvu",
+  "owner": "cohvu",
+  "metadata": {
+    "description": "Persistent memory for AI coding agents"
+  },
+  "plugins": [
+    {
+      "name": "cohvu",
+      "source": "./plugins-cursor/cohvu"
+    }
+  ]
+}

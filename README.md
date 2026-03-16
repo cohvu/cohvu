@@ -1,6 +1,6 @@
 # Cohvu
 
-**This is what AI-native development was always supposed to feel like.**
+This is what AI-native development was always supposed to feel like.
 
 Every agent you run already knows your project — your decisions, your direction, your reasoning. Switch agents mid-thought and the new one picks up exactly where the last left off. No reexplaining. No rebuilding. It just gets you. Open a session tomorrow and it remembers everything from today. That alone changes everything. But every agent on your team understands your project just as deeply too — and yours understands theirs. Every agent, every person, working from the same living understanding of what you're building and why. This is what it's supposed to feel like.
 
@@ -11,7 +11,8 @@ All of your agents now continue to understand you — your project, your decisio
 ---
 
 ## Get started
-```
+
+```sh
 npx cohvu login
 ```
 
@@ -23,9 +24,9 @@ Sign in with Google. Cohvu configures every AI tool on your machine automaticall
 
 ## How it works
 
-Cohvu gives your agents two tools: `read` and `contribute`.
+Cohvu gives your agents two tools: **read** and **contribute**.
 
-Before starting work the agent reads from your project memory. It gets everything that matters — your decisions, your direction, your reasoning — before it does anything. As it works it contributes what it learns. Understanding builds automatically across every agent, every session, every person on your team.
+Before starting work the agent reads from your project memory. It gets everything that matters — your decisions, your direction, your reasoning — before it does anything. As it works it contributes what it learns. Understanding builds automatically across every session, every agent, every person on your team.
 
 The agent never thinks about any of this. It just reads and contributes. Everything else is invisible.
 
@@ -73,6 +74,7 @@ Cohvu configures automatically on login:
 ## Manual MCP configuration
 
 If you want to configure Cohvu manually for any platform, use this:
+
 ```json
 {
   "mcpServers": {
@@ -96,21 +98,16 @@ Every project member gets an agent link. Autonomous agents — CI bots, schedule
 
 ## CLI
 
-`npx cohvu login` — Sign in and configure every AI tool automatically.
-
-`npx cohvu create` — Create a new project.
-
-`npx cohvu invite` — Invite teammates and get your agent link for autonomous agents.
-
-`npx cohvu members` — Manage your team.
-
-`npx cohvu billing` — Manage your subscription.
-
-`npx cohvu switch` — Switch between projects.
-
-`npx cohvu clear` — Clear all memories from a project.
-
-`npx cohvu delete` — Delete a project.
+```
+npx cohvu login       Sign in and configure every AI tool automatically.
+npx cohvu create      Create a new project.
+npx cohvu invite      Invite teammates and get your agent link for autonomous agents.
+npx cohvu members     Manage your team.
+npx cohvu billing     Manage your subscription.
+npx cohvu switch      Switch between projects.
+npx cohvu clear       Clear all memories from a project.
+npx cohvu delete      Delete a project.
+```
 
 ---
 
@@ -122,15 +119,10 @@ When a teammate joins your seat count updates automatically. When someone leaves
 
 ---
 
-Security
-Your agent never talks to the internet directly. Cohvu runs as a local proxy — your agent communicates with it locally, it forwards to the Cohvu backend over HTTPS. All data is isolated per project with multiple layers of access verification. Tokens are short-lived and refresh automatically. API keys are hashed and never stored in plaintext. No stack traces or internal errors are ever exposed.
-
----
-
 ## Support
 
 support@cohvu.com
 
 ---
 
-*© 2026 Cohvu*
+&copy; 2026 Cohvu

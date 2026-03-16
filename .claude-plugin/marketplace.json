@@ -1,0 +1,24 @@
+{
+  "name": "cohvu",
+  "owner": {
+    "name": "Cohvu",
+    "email": "support@cohvu.com"
+  },
+  "metadata": {
+    "description": "Persistent memory for AI coding agents",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "cohvu",
+      "description": "Every agent you run understands your project — your decisions, your direction, your reasoning — across every agent and every session, forever.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Cohvu",
+        "url": "https://cohvu.com"
+      },
+      "homepage": "https://cohvu.com",
+      "source": "./plugins/cohvu"
+    }
+  ]
+}
