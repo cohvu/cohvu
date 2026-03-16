@@ -81,6 +81,18 @@
       line-height: 1.5;
       border: 1px solid #1F1F1F;
     }
+    hr {
+      border: none;
+      border-top: 1px solid #1F1F1F;
+      margin: 32px 0;
+    }
+    .scenarios p {
+      margin-bottom: 24px;
+    }
+    .cta {
+      color: #A0A0A0;
+      font-size: 13px;
+    }
     .footer {
       color: #A0A0A0;
       font-size: 12px;
@@ -94,24 +106,46 @@
   <p class="subline">Your entire development workflow just got smarter. Permanently.</p>
 
   <div class="section">
-    <p>Every agent you run already knows your project &mdash; your decisions, your direction, your reasoning. Switch agents mid-thought and the new one picks up exactly where the last left off. No reexplaining. No rebuilding. It just gets you. Open a session tomorrow and it remembers everything from today. That alone changes everything. But every agent on your team understands your project just as deeply too &mdash; and yours understands theirs. Every agent, every person, working from the same living understanding of what you're building and why. This is what it's supposed to feel like.</p>
+    <p>With Cohvu, your agents carry continuous understanding of your project across every session and every agent &mdash; your decisions, your direction, your reasoning, always there, always current. Before Cohvu every new session started from nothing. Now nothing is ever lost. Invite your teammates and every agent across your entire team works from the same living understanding of what you're building and why.</p>
   </div>
 
   <div class="section">
-    <p>Every agent you run starts from zero. No memory of your decisions. No understanding of your codebase. No idea what you built yesterday or why. You rebuild that understanding every single session, over and over. And every agent on your team is doing the same thing &mdash; all working on the same project, none of them knowing anything.</p>
+    <p>It works as a memory layer that lives alongside your project. Every agent reads from it before starting work and contributes to it as they go. The understanding builds itself.</p>
   </div>
-
-  <div class="section">
-    <p>All of your agents now continue to understand you &mdash; your project, your decisions, your direction &mdash; across every agent and every session, forever. No more agents that don't understand you, your direction, your decisions, what you built yesterday, or why. Invite your team and their agents understand everything too.</p>
-  </div>
-
-  <p>Built for Claude Code, Cursor, Windsurf, Cline, and Codex.</p>
 
   <p><span class="copy-wrap"><code>npx cohvu login</code><button class="copy-btn" onclick="navigator.clipboard.writeText('npx cohvu login').then(()=>{this.innerHTML='<svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>';setTimeout(()=>this.innerHTML='<svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/><path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/></svg>',1500)})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></span></p>
 
-  <p><a href="https://github.com/cohvu" target="_blank">github.com/cohvu</a></p>
+  <p class="cta">One command configures every tool automatically. Built for Claude Code, Cursor, Windsurf, Cline, and Codex. 7 day free trial, no card required &mdash; $9/seat/month after.</p>
 
-  <p>7 day free trial, no card required &mdash; $9/seat/month after.</p>
+  <hr>
+
+  <div class="scenarios">
+    <p>Use Claude Code to reason through your architecture. Switch to Codex to debug. Codex already knows every decision you made, every constraint you discovered, every direction you chose. It doesn't just see the code &mdash; it understands why the code is the way it is. The debugger has the designer's full context. That has never been possible before.</p>
+
+    <p>Two agents working different parts of the same feature simultaneously. One discovers the API rate limits at 100 requests per minute on the backend. The other knows it before writing a single line of frontend code that would have hit that wall. They never talked to each other. They didn't have to.</p>
+
+    <p>A new developer joins your team. Their agent inherits everything your agents have ever learned about the project &mdash; every architectural decision, every constraint, every dead end, every direction chosen and why. Not documentation nobody wrote. Not comments that went stale. The actual reasoning. On the first session.</p>
+
+    <p>Come back after a week away. Your agent already knows where you left off, what you were thinking, what the next step was. You don't spend the first twenty minutes reconstructing context. You just work.</p>
+
+    <p>A constraint exists deep in the codebase that's easy to miss. One agent discovers it. Contributes it. No agent ever violates it again. The thing that used to require tribal knowledge is now just known.</p>
+
+    <p>Switch between Claude Code, Cursor, Windsurf, Cline, and Codex across your workflow. Every single one understands your project the same way. No agent is the smart one that knows everything. No agent is the one that has no idea what's going on.</p>
+
+    <p>Your codebase has conventions. Naming patterns, architectural boundaries, preferred libraries. An agent that has never touched this project before follows them on the first session &mdash; because every previous agent contributed them and they're already there waiting.</p>
+
+    <p>You're deep in a complex refactor that spans multiple sessions. Each session builds on the last. The agent remembers what it already changed and why. It doesn't suggest reverting something it already decided to change for a reason. The work compounds instead of repeating.</p>
+
+    <p>The decision log that actually gets maintained. Not because anyone writes documentation. Because agents contribute decisions as they make them. Six months of architectural history, always current, always available, surfaced exactly when it's relevant.</p>
+
+    <p>Your team's collective understanding in one place. What one person's agent learns, every person's agent knows. Knowledge doesn't live in one developer's head and disappear when they go on vacation. It lives in the project. It's always there.</p>
+
+    <p>Two developers in different timezones on the same codebase. Both of their agents understand the auth layer the same way &mdash; because the understanding lives in the project, not in either of them.</p>
+  </div>
+
+  <hr>
+
+  <p><a href="https://github.com/cohvu/cohvu" target="_blank">github.com/cohvu/cohvu</a></p>
 
   <p><a href="mailto:support@cohvu.com">support@cohvu.com</a></p>
 
