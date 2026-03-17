@@ -6,181 +6,539 @@
   <title>Cohvu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 400;
-      font-size: 15px;
-      color: #F5F5F5;
-      background: #0A0A0A;
-      line-height: 1.6;
-      padding: 48px 32px;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    @media (max-width: 600px) {
-      body { padding: 48px 24px; }
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: 500;
-      line-height: 1.3;
-      margin-bottom: 8px;
-    }
-    .subline {
-      font-size: 15px;
-      color: #A0A0A0;
-      margin-bottom: 32px;
-    }
-    p {
-      margin-bottom: 16px;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-    .section { margin-bottom: 24px; }
-    .section p { margin-bottom: 0; }
-    a { color: #A0A0A0; }
-    .copy-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #141414;
-      padding: 12px 16px;
-      border-radius: 2px;
-      border: 1px solid #1F1F1F;
-    }
-    .copy-wrap code {
-      background: none;
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
       padding: 0;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.5;
-      border: none;
     }
-    .copy-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 2px;
+
+    :root {
+      --bg: #0A0A0A;
+      --text: #F5F5F5;
+      --muted: #A0A0A0;
+      --code-bg: #141414;
+      --border: #1E1E1E;
+      --accent: #F5F5F5;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── LAYOUT ── */
+    .site {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 48px 0 0;
       display: flex;
       align-items: center;
-      color: #A0A0A0;
-      transition: color 0.15s;
+      justify-content: space-between;
     }
-    .copy-btn:hover { color: #F5F5F5; }
-    .copy-btn svg { width: 14px; height: 14px; }
-    code {
+
+    .wordmark {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .header-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .header-links a:hover {
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 120px 0 80px;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 300;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 64px;
+      max-width: 560px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .hero-body p {
+      margin-bottom: 20px;
+      max-width: 580px;
+    }
+
+    .hero-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .now {
+      color: var(--text);
+      font-weight: 500;
+      font-size: 18px;
+      display: block;
+      margin: 32px 0;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── INSTALL BLOCK ── */
+    .install-block {
+      margin: 72px 0 24px;
+    }
+
+    .command {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      padding: 14px 20px;
       font-family: 'JetBrains Mono', monospace;
-      background: #141414;
-      padding: 0.2rem 0.5rem;
-      border-radius: 2px;
       font-size: 14px;
       font-weight: 400;
-      line-height: 1.5;
-      border: 1px solid #1F1F1F;
+      color: var(--text);
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s;
+      width: 100%;
+      max-width: 320px;
     }
-    hr {
-      border: none;
-      border-top: 1px solid #1F1F1F;
-      margin: 32px 0;
+
+    .command:hover {
+      border-color: #333;
     }
-    .scenarios p {
-      margin-bottom: 24px;
-    }
-    .cta {
-      color: #A0A0A0;
-      font-size: 13px;
-    }
-    .footer {
-      color: #A0A0A0;
+
+    .command::before {
+      content: '$';
+      color: var(--muted);
       font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .command .copy-hint {
+      position: absolute;
+      right: 14px;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .command:hover .copy-hint {
+      opacity: 1;
+    }
+
+    .command.copied {
+      border-color: #2a2a2a;
+    }
+
+    .command.copied .copy-hint {
+      opacity: 1;
+      color: var(--text);
+    }
+
+    .install-meta {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+    }
+
+    .install-meta strong {
+      color: #666;
       font-weight: 400;
-      margin-top: 32px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 80px 0;
+    }
+
+    /* ── SECTION ── */
+    section {
+      margin-bottom: 0;
+    }
+
+    .section-body {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .section-body p {
+      margin-bottom: 28px;
+      max-width: 580px;
+    }
+
+    .section-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* inline code */
+    .section-body code,
+    .hero-body code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      padding: 1px 6px;
+      color: #999;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── USE CASES ── */
+    .use-cases {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .use-case {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 580px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .use-case.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .use-case:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .use-case strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 80px 0 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #444;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .fade-in-1 { animation-delay: 0.1s; }
+    .fade-in-2 { animation-delay: 0.25s; }
+    .fade-in-3 { animation-delay: 0.4s; }
+    .fade-in-4 { animation-delay: 0.55s; }
+    .fade-in-5 { animation-delay: 0.7s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── CURSOR BLINK ON COMMAND ── */
+    .command-text::after {
+      content: '▌';
+      animation: blink 1.2s step-end infinite;
+      color: var(--muted);
+      font-size: 10px;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .hero {
+        padding: 80px 0 60px;
+      }
+
+      .hero-title {
+        font-size: 26px;
+        margin-bottom: 48px;
+      }
+
+      header {
+        padding: 32px 0 0;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>This is what AI-native development was always supposed to feel like.</h1>
-  <p class="subline">Your entire development workflow just got smarter. Permanently.</p>
 
-  <div class="section">
-    <p>Before Cohvu every new session started from nothing. You re-explained the codebase. You reminded the agent what you decided last week. You watched it suggest something you already ruled out.</p>
-  </div>
+<div class="site">
 
-  <div class="section">
-    <p>Now nothing is ever lost.</p>
-  </div>
+  <!-- HEADER -->
+  <header class="fade-in fade-in-1">
+    <a href="/" class="wordmark">cohvu</a>
+    <nav class="header-links">
+      <a href="https://github.com/cohvu/cohvu">github</a>
+      <a href="mailto:support@cohvu.com">support</a>
+    </nav>
+  </header>
 
-  <div class="section">
-    <p>Your decisions, your reasoning, your direction &mdash; always there, always current, carried across every session and every agent automatically. Invite your teammates and every agent across your entire team works from the same living understanding of what you're building and why.</p>
-  </div>
+  <!-- HERO -->
+  <section class="hero">
+    <h1 class="hero-title fade-in fade-in-2">
+      This is what AI-native development<br>
+      <em>was always supposed to feel like.</em>
+    </h1>
 
-  <div class="section">
-    <p>A memory layer that lives alongside your project. Every agent reads before starting work and contributes as it goes. The understanding builds itself.</p>
-  </div>
+    <div class="hero-body fade-in fade-in-3">
+      <p>Before Cohvu every new session started from nothing. You re-explained the codebase. You reminded the agent what you decided last week. You watched it suggest something you already ruled out.</p>
 
-  <p><span class="copy-wrap"><code>npx cohvu login</code><button class="copy-btn" onclick="navigator.clipboard.writeText('npx cohvu login').then(()=>{this.innerHTML='<svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>';setTimeout(()=>this.innerHTML='<svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/><path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/></svg>',1500)})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></span></p>
+      <span class="now">Now nothing is ever lost.</span>
 
-  <p class="cta">One command configures every tool automatically. Built for Claude Code, Cursor, Windsurf, Cline, and Codex. 7 day free trial, no card required &mdash; $9/seat/month after.</p>
+      <p>Your decisions, your reasoning, your direction — always there, always current, carried across every session and every agent automatically. Invite your teammates and every agent across your entire team works from the same living understanding of what you're building and why.</p>
 
-  <div class="section">
-    <p>Create a project. Every agent that connects reads from it before starting work and contributes to it as they go. The project gets richer with every session.</p>
-  </div>
+      <p>A memory layer that lives alongside your project. Every agent reads before starting work and contributes as it goes. The understanding builds itself.</p>
+    </div>
 
-  <div class="section">
-    <p>npx cohvu login. One command detects every tool on your machine and configures them all. Claude Code and Cursor get a plugin. Windsurf, Cline, and Codex are configured automatically. Every tool ready.</p>
-  </div>
+    <div class="install-block fade-in fade-in-4">
+      <div class="command" id="cmd" onclick="copyCommand()">
+        <span class="command-text">npx cohvu login</span>
+        <span class="copy-hint" id="copy-hint">copy</span>
+      </div>
+      <p class="install-meta">
+        One command configures every tool automatically.<br>
+        Built for Claude Code, Cursor, Windsurf, Cline, and Codex.<br>
+        <strong>7 day free trial, no card required — $9/seat/month after.</strong>
+      </p>
+    </div>
+  </section>
 
-  <div class="section">
-    <p>Invite your team and every agent across your entire organization works from the same understanding. What one person's agent learns every person's agent knows. New teammates inherit everything from the first session.</p>
-  </div>
+  <hr class="divider">
 
-  <div class="section">
-    <p>Autonomous agents connect via a secure agent link. Your CI pipelines and scheduled workflows get the same understanding as your interactive sessions.</p>
-  </div>
+  <!-- HOW IT WORKS -->
+  <section>
+    <p class="section-label fade-in fade-in-1">How it works</p>
+    <div class="section-body">
+      <p>Create a project. Every agent that connects reads from it before starting work and contributes to it as they go. The project gets richer with every session.</p>
 
-  <div class="section">
-    <p>Browse what your project knows, remove anything that shouldn't be there, switch between projects. Everything else happens on its own.</p>
-  </div>
+      <p><code>npx cohvu login</code>. One command detects every tool on your machine and configures them all. Claude Code and Cursor get a plugin. Windsurf, Cline, and Codex are configured automatically.</p>
 
-  <div class="section">
-    <p>Open a fresh context window. The agent already understands your codebase, your decisions, your reasoning, your direction. You don't re-explain anything. You just continue.</p>
-  </div>
+      <p>Invite your team and every agent across your entire organization works from the same understanding. What one person's agent learns every person's agent knows. New teammates inherit everything from the first session.</p>
 
-  <hr>
+      <p>Autonomous agents connect via a secure agent link. Your CI pipelines and scheduled workflows get the same understanding as your interactive sessions.</p>
 
-  <div class="scenarios">
-    <p>Use Claude Code to reason through your architecture. Switch to Codex to debug. Codex already knows every decision you made, every constraint you discovered, every direction you chose. It doesn't just see the code &mdash; it understands why the code is the way it is. The debugger has the designer's full context. That has never been possible before.</p>
+      <p>Browse what your project knows, remove anything that shouldn't be there, switch between projects. Everything else happens on its own.</p>
+    </div>
+  </section>
 
-    <p>Two agents working different parts of the same feature simultaneously. One discovers the API rate limits at 100 requests per minute on the backend. The other knows it before writing a single line of frontend code that would have hit that wall. They never talked to each other. They didn't have to.</p>
+  <hr class="divider">
 
-    <p>A new developer joins your team. Their agent inherits everything your agents have ever learned about the project &mdash; every architectural decision, every constraint, every dead end, every direction chosen and why. Not documentation nobody wrote. Not comments that went stale. The actual reasoning. On the first session.</p>
+  <!-- USE CASES -->
+  <section>
+    <p class="section-label">In practice</p>
+    <div class="use-cases">
 
-    <p>Come back after a week away. Your agent already knows where you left off, what you were thinking, what the next step was. You don't spend the first twenty minutes reconstructing context. You just work.</p>
+      <div class="use-case">
+        Open a fresh context window. The agent already understands your codebase, your decisions, your reasoning, your direction. You don't re-explain anything. <strong>You just continue.</strong>
+      </div>
 
-    <p>A constraint exists deep in the codebase that's easy to miss. One agent discovers it. Contributes it. No agent ever violates it again. The thing that used to require tribal knowledge is now just known.</p>
+      <div class="use-case">
+        Use Claude Code to reason through your architecture. Switch to Codex to debug. Codex already knows every decision you made, every constraint you discovered, every direction you chose. It doesn't just see the code — it understands why the code is the way it is. <strong>The debugger has the designer's full context. That has never been possible before.</strong>
+      </div>
 
-    <p>Switch between Claude Code, Cursor, Windsurf, Cline, and Codex across your workflow. Every single one understands your project the same way. No agent is the smart one that knows everything. No agent is the one that has no idea what's going on.</p>
+      <div class="use-case">
+        Two agents working different parts of the same feature simultaneously. One discovers the API rate limits at 100 requests per minute on the backend. The other knows it before writing a single line of frontend code that would have hit that wall. <strong>They never talked to each other. They didn't have to.</strong>
+      </div>
 
-    <p>Your codebase has conventions. Naming patterns, architectural boundaries, preferred libraries. An agent that has never touched this project before follows them on the first session &mdash; because every previous agent contributed them and they're already there waiting.</p>
+      <div class="use-case">
+        A new developer joins your team. Their agent inherits everything your agents have ever learned about the project — every architectural decision, every constraint, every dead end, every direction chosen and why. Not documentation nobody wrote. Not comments that went stale. <strong>The actual reasoning. On the first session.</strong>
+      </div>
 
-    <p>You're deep in a complex refactor that spans multiple sessions. Each session builds on the last. The agent remembers what it already changed and why. It doesn't suggest reverting something it already decided to change for a reason. The work compounds instead of repeating.</p>
+      <div class="use-case">
+        Come back after a week away. Your agent already knows where you left off, what you were thinking, what the next step was. <strong>You don't spend the first twenty minutes reconstructing context. You just work.</strong>
+      </div>
 
-    <p>The decision log that actually gets maintained. Not because anyone writes documentation. Because agents contribute decisions as they make them. Six months of architectural history, always current, always available, surfaced exactly when it's relevant.</p>
+      <div class="use-case">
+        A constraint exists deep in the codebase that's easy to miss. One agent discovers it. Contributes it. <strong>No agent ever violates it again.</strong> The thing that used to require tribal knowledge is now just known.
+      </div>
 
-    <p>Your team's collective understanding in one place. What one person's agent learns, every person's agent knows. Knowledge doesn't live in one developer's head and disappear when they go on vacation. It lives in the project. It's always there.</p>
+      <div class="use-case">
+        Switch between Claude Code, Cursor, Windsurf, Cline, and Codex across your workflow. Every single one understands your project the same way. <strong>No agent is the smart one that knows everything. No agent is the one that has no idea what's going on.</strong>
+      </div>
 
-    <p>Two developers in different timezones on the same codebase. Both of their agents understand the auth layer the same way &mdash; because the understanding lives in the project, not in either of them.</p>
-  </div>
+      <div class="use-case">
+        Your codebase has conventions. Naming patterns, architectural boundaries, preferred libraries. An agent that has never touched this project before follows them on the first session — <strong>because every previous agent contributed them and they're already there waiting.</strong>
+      </div>
 
-  <hr>
+      <div class="use-case">
+        You're deep in a complex refactor that spans multiple sessions. Each session builds on the last. The agent remembers what it already changed and why. <strong>It doesn't suggest reverting something it already decided to change for a reason. The work compounds instead of repeating.</strong>
+      </div>
 
-  <p><a href="https://github.com/cohvu/cohvu" target="_blank">github.com/cohvu/cohvu</a></p>
+      <div class="use-case">
+        The decision log that actually gets maintained. Not because anyone writes documentation. Because agents contribute decisions as they make them. <strong>Six months of architectural history, always current, always available, surfaced exactly when it's relevant.</strong>
+      </div>
 
-  <p><a href="mailto:support@cohvu.com">support@cohvu.com</a></p>
+      <div class="use-case">
+        Your team's collective understanding in one place. What one person's agent learns, every person's agent knows. <strong>Knowledge doesn't live in one developer's head and disappear when they go on vacation. It lives in the project. It's always there.</strong>
+      </div>
 
-  <p class="footer">&copy; 2026 Cohvu</p>
+      <div class="use-case">
+        Two developers in different timezones on the same codebase. Both of their agents understand the auth layer the same way — <strong>because the understanding lives in the project, not in either of them.</strong>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <nav class="footer-links">
+      <a href="https://github.com/cohvu/cohvu">github.com/cohvu/cohvu</a>
+      <a href="mailto:support@cohvu.com">support@cohvu.com</a>
+    </nav>
+    <span class="footer-copy">© 2026 Cohvu</span>
+  </footer>
+
+</div>
+
+<script>
+  // Copy command
+  function copyCommand() {
+    navigator.clipboard.writeText('npx cohvu login').then(() => {
+      const cmd = document.getElementById('cmd');
+      const hint = document.getElementById('copy-hint');
+      cmd.classList.add('copied');
+      hint.textContent = 'copied';
+      setTimeout(() => {
+        cmd.classList.remove('copied');
+        hint.textContent = 'copy';
+      }, 2000);
+    });
+  }
+
+  // Scroll-triggered use case reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.use-case').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
