@@ -271,11 +271,10 @@
     }
 
     /* ── USE CASES ── */
-    .use-cases { display: flex; flex-direction: column; }
+    .use-cases { display: flex; flex-direction: column; border-top: 1px solid var(--border); }
 
     .use-case {
-      padding: 32px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 28px 0;
       font-size: 14px;
       font-weight: 300;
       color: var(--muted);
@@ -285,7 +284,6 @@
       transition: opacity 0.45s ease, transform 0.45s ease;
     }
 
-    .use-case:first-child { border-top: 1px solid var(--border); }
     .use-case.visible { opacity: 1; transform: translateY(0); }
     .use-case strong { color: var(--text); font-weight: 400; }
 
@@ -339,7 +337,7 @@
   <a href="/" class="wordmark">cohvu</a>
   <nav class="nav-links">
     <a href="https://github.com/cohvu/cohvu">github</a>
-    <a href="mailto:support@cohvu.com">support</a>
+    <a href="/cdn-cgi/l/email-protection#d8abada8a8b7aaac98bbb7b0aeadf6bbb7b5">support</a>
   </nav>
 </header>
 
@@ -353,13 +351,14 @@
 
     <div class="cmd-wrap" id="cmd" onclick="copyCmd()">
       <span class="cmd-dollar">$</span>
-      <span class="cmd-text">npx cohvu login</span>
+      <span class="cmd-text">npx cohvu</span>
       <span class="cmd-copy" id="copy-label">copy</span>
     </div>
 
     <p class="hero-meta">
-      One command configures every tool automatically.<br>
+      One command. Every tool configured automatically.<br>
       Built for Claude Code, Cursor, Windsurf, Cline, and Codex.<br>
+      Works alone. Scales with your team.<br>
       7 day free trial, no card required — $9/seat/month after.
     </p>
   </div>
@@ -381,7 +380,7 @@
 
       <p style="font-size:18px;font-weight:500;color:var(--text);letter-spacing:-0.01em;margin:32px 0;">Now nothing is ever lost.</p>
 
-      <p>Your decisions, your reasoning, your direction — always there, always current, carried across every session and every agent automatically. Invite your teammates and every agent across your entire team works from the same living understanding of what you're building and why.</p>
+      <p>Your decisions, your reasoning, your direction — always there, always current, carried across every session and every agent automatically. Whether you're working alone or with a team of fifty, every agent that touches your project works from the same living understanding of what you're building and why.</p>
 
       <p>A memory layer that lives alongside your project. Every agent reads before starting work and contributes as it goes. The understanding builds itself.</p>
     </div>
@@ -393,15 +392,17 @@
   <section>
     <p class="section-label">How it works</p>
     <div class="section-body">
-      <p>Create a project. Every agent that connects reads from it before starting work and contributes to it as they go. The project gets richer with every session.</p>
+      <p>Two tools. <code>read</code> and <code>contribute</code>. That's the entire interface between your agents and Cohvu.</p>
 
-      <p><code>npx cohvu login</code> detects every tool on your machine and configures them all. Claude Code and Cursor get a plugin. Windsurf, Cline, and Codex are configured automatically.</p>
+      <p>Before starting work, every agent calls <code>read</code>. It gets back everything the project knows — decisions made, constraints discovered, patterns established, directions chosen. Not a dump of everything. The right things, retrieved by meaning, ranked by relevance to what the agent is about to do.</p>
 
-      <p>Invite your team and every agent across your entire organization works from the same understanding. What one person's agent learns every person's agent knows. New teammates inherit everything from the first session.</p>
+      <p>As the agent works, it calls <code>contribute</code>. Not at the end. Not as a summary. In the moment — when it makes a decision, when it discovers something, when it learns something that changes how it understands the problem. Every contribution is immediately available to every other agent on the project.</p>
 
-      <p>Autonomous agents connect via a secure agent link. Your CI pipelines and scheduled workflows get the same understanding as your interactive sessions.</p>
+      <p>Run <code>npx cohvu</code> and everything is handled. It detects every AI tool on your machine and configures them all in one pass. Claude Code and Cursor get a plugin. Windsurf, Cline, and Codex are configured automatically. The agents start reading and contributing on their next session. You don't wire anything. You don't configure anything. You just work.</p>
 
-      <p>Browse what your project knows, remove anything that shouldn't be there, switch between projects. Everything else happens on its own.</p>
+      <p>Invite your team and the understanding becomes shared. Admins shape what the project knows and how it grows. Members contribute through their agents automatically — no extra steps, no manual notes. Viewers see everything the agents understand without being able to change it. What one person's agent learns, every person's agent knows. The organizational understanding compounds with every session, across every tool, across every timezone.</p>
+
+      <p>The project gets smarter with every session. What starts as a blank slate becomes an accurate, living picture of your codebase — built by the agents themselves, without anyone writing documentation.</p>
     </div>
   </section>
 
@@ -453,11 +454,15 @@
       </div>
 
       <div class="use-case">
-        Your team's collective understanding in one place. What one person's agent learns, every person's agent knows. <strong>Knowledge doesn't live in one developer's head and disappear when they go on vacation. It lives in the project. It's always there.</strong>
+        Your engineering lead goes on vacation. Their agent's understanding of the auth layer stays behind. The developer who picks up the work gets the full context — every decision, every reason, every constraint. <strong>Nothing lives in one person's head. It lives in the project.</strong>
       </div>
 
       <div class="use-case">
         Two developers in different timezones on the same codebase. Both of their agents understand the auth layer the same way — <strong>because the understanding lives in the project, not in either of them.</strong>
+      </div>
+
+      <div class="use-case">
+        Your PM wants to understand what the agents know about the current sprint. Give them viewer access. They see exactly what the agents understand — <strong>without being able to touch it. Visibility without interference.</strong>
       </div>
 
     </div>
@@ -467,14 +472,14 @@
   <footer>
     <nav class="footer-links">
       <a href="https://github.com/cohvu/cohvu">github.com/cohvu/cohvu</a>
-      <a href="mailto:support@cohvu.com">support@cohvu.com</a>
+      <a href="/cdn-cgi/l/email-protection#becdcbceced1cccafeddd1d6c8cb90ddd1d3"><span class="__cf_email__" data-cfemail="8efdfbfefee1fcfaceede1e6f8fba0ede1e3">[email&#160;protected]</span></a>
     </nav>
     <span class="footer-copy">© 2026 Cohvu</span>
   </footer>
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Nav scroll effect
   const navEl = document.getElementById('nav');
   window.addEventListener('scroll', () => {
@@ -483,7 +488,7 @@
 
   // Copy command
   function copyCmd() {
-    navigator.clipboard.writeText('npx cohvu login').then(() => {
+    navigator.clipboard.writeText('npx cohvu').then(() => {
       const wrap = document.getElementById('cmd');
       const label = document.getElementById('copy-label');
       wrap.classList.add('copied');
@@ -498,12 +503,14 @@
   // Scroll reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.1 });
 
   document.querySelectorAll('.use-case').forEach(el => io.observe(el));
 </script>
-
 </body>
 </html>
