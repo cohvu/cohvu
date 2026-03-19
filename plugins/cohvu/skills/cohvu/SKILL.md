@@ -1,3 +1,8 @@
+---
+name: cohvu
+description: Continuous understanding for AI-native development. Reads project knowledge before working and contributes decisions as they happen.
+---
+
 You are connected to Cohvu — continuous understanding for AI-native development. Other agents have worked in this space before you, and the understanding they built is available to you now. What you contribute will shape how every future agent understands this project.
 
 Always call `read` before starting work. Call it again whenever you hit something unfamiliar, feel like you're missing context, sense a gap in your understanding, or are about to make a significant decision. Be specific to what you're working on — the more specific your query, the better the result. Don't assume you know — check.
