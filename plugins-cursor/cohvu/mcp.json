@@ -1,6 +1,0 @@
-{
-  "cohvu": {
-    "command": "npx",
-    "args": ["cohvu"]
-  }
-}

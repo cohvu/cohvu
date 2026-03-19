@@ -1,0 +1,12 @@
+{
+  "name": "cohvu",
+  "description": "Continuous understanding for AI-native development. Your agents read project knowledge before starting work and contribute what they learn as they go.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Cohvu",
+    "url": "https://cohvu.com"
+  },
+  "homepage": "https://cohvu.com",
+  "repository": "https://github.com/cohvu/cohvu",
+  "license": "MIT"
+}
