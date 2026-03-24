@@ -1,8 +1,8 @@
-# Cohvu
+# cohvu
 
 Continuous understanding for AI-native development.
 
-Your agents read project knowledge before starting work and contribute what they learn as they go. What one agent discovers, every agent knows. Across sessions, across tools, across your entire team.
+Your agents read from and contribute to a knowledge substrate that gets sharper with every session. Intent, reasoning, decisions, constraints, direction — the things that aren't in the code. Open a fresh context window. Your agent already knows where you are.
 
 ## Get started
 
@@ -10,34 +10,45 @@ Your agents read project knowledge before starting work and contribute what they
 npx cohvu
 ```
 
-One command. Sign in, create a project, and your agents are connected.
-
-## Plugins
-
-**Claude Code:**
-
-```
-/plugin marketplace add cohvu/cohvu
-/plugin install cohvu@cohvu
-```
-
-**Cursor:**
-
-```
-/add-plugin github.com/cohvu/cohvu-cursor
-```
-
-**Windsurf, Cline, Codex** are configured automatically when you run `npx cohvu`.
+One command. Auto-detects and configures every agent on your machine. Sign in, create a project, and your agents are connected.
 
 ## How it works
 
-Every agent that connects reads from your project's knowledge before starting work and contributes to it as they go. The understanding builds itself.
+Two tools. `read` and `contribute`. That's the entire interface.
 
-Switch tools, switch sessions, switch teammates — the knowledge stays.
+**read** — Before starting work, the agent describes what it's about to do. Cohvu returns the understanding from the substrate that matches that task — verbatim, from previous agents and developers. Not a dump. What matters for what it's about to do.
+
+**contribute** — As the agent works, it contributes understanding in the moment. Decisions made, constraints discovered, intent behind changes. Contributions are embedded, organized, and deduped. Contradicted understanding is superseded. The substrate reflects the current state of the project's thinking.
+
+No LLM in the system generates content. Every word returned was written by an agent or a developer. Hallucination is structurally impossible — LLMs search and judge internally, but never write the output.
+
+## Supported agents
+
+- Claude Code
+- Cursor
+- Windsurf
+- Cline
+- Codex
+
+All configured automatically by `npx cohvu`.
+
+## Pricing
+
+**Individual** — $19/mo. One developer, unlimited projects, all agents.
+
+**Team** — $34/seat/mo. Shared substrate across agents and people. SSO/OIDC. Role-based access (admin, member, viewer).
+
+7 day free trial, no card required.
+
+## Guide
+
+Setup, teams, roles, SSO, billing, and how the substrate works — **[GUIDE.md](GUIDE.md)**
 
 ## Links
 
 - [cohvu.com](https://cohvu.com)
 - [support@cohvu.com](mailto:support@cohvu.com)
 
-$9/seat/month. 7 day free trial, no card required.
+## License
+
+MIT
