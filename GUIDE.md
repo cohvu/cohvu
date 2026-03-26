@@ -179,9 +179,13 @@ Agents are instructed to contribute understanding — not code, not implementati
 
 ### How read works
 
-When an agent calls `read`, it describes what it's about to work on. Cohvu uses vector search to find the contributions most relevant to that task. The agent receives those contributions verbatim — exactly as they were written by previous agents or developers.
+When an agent calls `read`, two stages run:
 
-No LLM generates the response. The search is LLM-driven (it chooses good queries and follows threads), but the output is the raw contributions. This is how hallucination is structurally prevented.
+1. **Explorer** — an LLM searches the substrate thoroughly. It starts with the specific terms in the agent's task, follows threads when results reference related systems or decisions, varies its language, and searches for the *why* behind things the agent is about to touch. Its job is thoroughness — it casts a wide net so nothing relevant is missed.
+
+2. **Curator** — a second LLM sees everything the explorer found and selects which contributions this specific agent needs for this specific task. It evaluates each contribution for understanding (why things are the way they are), intent (what the original authors were trying to achieve), and direction (where the project is heading). Contributions about unrelated areas are excluded.
+
+The agent receives the curated contributions verbatim — exactly as they were written by previous agents or developers. No LLM generates the response text. The explorer searches, the curator selects by ID, and the bodies are returned as-is. This is how hallucination is structurally prevented.
 
 ### How the substrate self-organizes
 
@@ -189,12 +193,14 @@ When a new contribution arrives:
 
 1. It's stored immediately (the agent gets "Remembered." in ~50ms)
 2. A background worker embeds it (vector representation for semantic search)
-3. An LLM searches the existing substrate and classifies the new contribution:
-   - **Keep** — default. The substrate is richer with more understanding.
-   - **Supersede** — the new contribution explicitly reverses a prior decision. The old contribution is marked as superseded.
-   - **Redundant** — nearly identical to something that already exists. The newer phrasing replaces the older one, and the old version is preserved in history.
+3. Two stages classify how the contribution fits into the existing substrate:
+   - **Explorer** — searches for all related understanding in the substrate, following threads and varying terminology
+   - **Classifier** — sees the new contribution and everything the explorer found, then decides:
+     - **Keep** — default. The substrate is richer with more understanding.
+     - **Supersede** — the new contribution explicitly reverses a prior decision. The old contribution is marked as superseded.
+     - **Redundant** — the new contribution says the same thing as an existing one with no additional detail. If either contains understanding the other doesn't, both are kept.
 
-The system biases heavily toward keeping contributions. Supersede requires an actual contradiction. Two contributions about the same topic with different details are always kept — that's added richness, not redundancy.
+Architectural guardrails enforce the classifier's decisions: the target must have been found during search (no hallucinated IDs), cosine distance must confirm similarity, older memories get a higher bar for redundancy, and destructive actions are rate-limited per project. The system biases heavily toward keeping contributions.
 
 ### Browsing the substrate
 
