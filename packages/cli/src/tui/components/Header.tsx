@@ -28,6 +28,7 @@ export function Header({ state }: { state: AppState }) {
 }
 
 function renderStatus(state: AppState): React.ReactNode {
+  if (state.paused) return <><Text color="gray" dimColor>  ·  </Text><Text color="yellow">paused</Text></>;
   if (state.offline) return <><Text color="gray" dimColor>  ·  </Text><Text color="red">offline</Text></>;
   if (!state.sseConnected && state.activeProjectId) return <><Text color="gray" dimColor>  ·  </Text><Text color="gray" dimColor>reconnecting</Text></>;
 

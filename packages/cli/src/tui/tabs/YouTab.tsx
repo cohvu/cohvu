@@ -39,7 +39,20 @@ export function YouTab({ state }: { state: AppState }) {
       <Box height={1} />
       <Divider />
       <Box height={1} />
-      <Text color="gray" dimColor>  for setup help visit <Text color="gray">github.com/cohvu/cohvu</Text></Text>
+
+      {/* Status */}
+      <Box>
+        <Box width={15}><Text color="gray">  status</Text></Box>
+        {state.paused
+          ? <Text color="yellow">paused</Text>
+          : <Text color="green">active</Text>
+        }
+      </Box>
+
+      <Box height={1} />
+      <Divider />
+      <Box height={1} />
+      <Text color="gray" dimColor>  to disconnect: <Text color="gray">npx cohvu disconnect</Text></Text>
     </Box>
   );
 }

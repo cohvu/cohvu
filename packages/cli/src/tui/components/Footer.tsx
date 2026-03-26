@@ -12,7 +12,7 @@ export function Footer({ state }: { state: AppState }) {
     case 'team': hint = teamHint(state); break;
     case 'billing': hint = billingHint(state); break;
     case 'project': hint = projectHint(state); break;
-    case 'you': hint = 'r re-run setup   l logout   q quit'; break;
+    case 'you': hint = `p ${state.paused ? 'resume' : 'pause'}   r re-run setup   l logout   q quit`; break;
   }
 
   return <Box><Text color="gray">{hint}</Text></Box>;

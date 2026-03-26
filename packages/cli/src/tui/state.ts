@@ -92,6 +92,7 @@ export interface AppState {
 
   // Platforms
   platforms: PlatformStatus[];
+  paused: boolean;
 
   // Modal
   modal: Modal;
@@ -150,6 +151,7 @@ export function initialState(): AppState {
     inlineError: null,
     billing: null,
     platforms: [],
+    paused: false,
     modal: null,
     firstLogin: false,
     joinedProjectName: null,
@@ -210,7 +212,8 @@ export type Action =
   | { type: 'UPDATE_MEMORY'; memory: MemoryItem }
   | { type: 'SET_FIRST_LOGIN'; firstLogin: boolean }
   | { type: 'SET_SSO_CONFIG'; config: AppState['ssoConfig'] }
-  | { type: 'SET_REQUIRE_CONSENSUS'; value: boolean };
+  | { type: 'SET_REQUIRE_CONSENSUS'; value: boolean }
+  | { type: 'SET_PAUSED'; paused: boolean };
 
 export function reduce(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -438,6 +441,9 @@ export function reduce(state: AppState, action: Action): AppState {
 
     case 'SET_REQUIRE_CONSENSUS':
       return { ...state, requireConsensus: action.value };
+
+    case 'SET_PAUSED':
+      return { ...state, paused: action.paused };
 
     default:
       return state;

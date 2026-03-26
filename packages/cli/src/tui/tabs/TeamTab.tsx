@@ -137,6 +137,7 @@ export function TeamTab({ state }: { state: AppState }) {
 
           <Box height={1} />
           <Text color="gray">  invite links</Text>
+          <Text color="gray" dimColor>  {memberCount} seat{memberCount !== 1 ? 's' : ''} · ${memberCount * 34}/mo · each join adds $34/mo</Text>
 
           {/* Invite link rows — indices memberCount + 3, +4, +5 */}
           {['admin', 'member', 'viewer'].map((role, li) => {

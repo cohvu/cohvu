@@ -361,7 +361,7 @@ export class ApiClient {
             return;
           }
           if (wasConnected) { wasConnected = false; callbacks.onDisconnected?.(); }
-          retryDelay = Math.min(retryDelay * 2, 30000);
+          retryDelay = Math.min(retryDelay * 2, 5000);
           scheduleRetry(retryDelay);
           return;
         }
@@ -400,12 +400,13 @@ export class ApiClient {
           }
         }
 
-        // Stream ended — reconnect
+        // Stream ended cleanly — reconnect immediately
         if (wasConnected) { wasConnected = false; callbacks.onDisconnected?.(); }
+        retryDelay = 1000;
         scheduleRetry(retryDelay);
       } catch {
         if (wasConnected) { wasConnected = false; callbacks.onDisconnected?.(); }
-        retryDelay = Math.min(retryDelay * 2, 30000);
+        retryDelay = Math.min(retryDelay * 2, 5000);
         scheduleRetry(retryDelay);
       }
     };

@@ -184,7 +184,10 @@ function TeamBilling({ state }: { state: AppState }) {
             <Text color="red">  ! payment failed</Text>
             <Text color="gray">    update your payment method to continue</Text>
             <Box height={1} />
-            <Field label="seats"><Text dimColor>{String(sub.seat_count)}</Text></Field>
+            <Field label="seats">
+              <Text dimColor>{String(sub.seat_count)}</Text>
+              <Text color="gray">  (${sub.seat_count * 34}/month)</Text>
+            </Field>
           </>
         ) : (
           <>
@@ -209,7 +212,10 @@ function TeamBilling({ state }: { state: AppState }) {
               <Text color="gray">  your agents will stop working {formatDate(sub.current_period_end)}</Text>
             )}
             <Box height={1} />
-            <Field label="seats"><Text dimColor>{String(sub.seat_count)}</Text></Field>
+            <Field label="seats">
+              <Text dimColor>{String(sub.seat_count)}</Text>
+              <Text color="gray">  (${sub.seat_count * 34}/month)</Text>
+            </Field>
             {sub.current_period_end && (
               <Field label="ends"><Text dimColor>{formatDate(sub.current_period_end)}</Text></Field>
             )}

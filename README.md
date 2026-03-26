@@ -32,6 +32,15 @@ No LLM in the system generates content. Every word returned was written by an ag
 
 All configured automatically by `npx cohvu`.
 
+## Commands
+
+```
+npx cohvu              # dashboard or MCP proxy
+npx cohvu pause        # pause — agents won't see tools
+npx cohvu resume       # resume
+npx cohvu disconnect   # remove from all agents, sign out
+```
+
 ## Pricing
 
 **Individual** — $19/mo. One developer, unlimited projects, all agents.

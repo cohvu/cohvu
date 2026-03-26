@@ -6,6 +6,7 @@
 
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { getApiKey } from "./auth.js";
+import { isPaused } from "./pause.js";
 import { refreshInstructions } from "./setup.js";
 import { DEFAULT_BASE_URL } from "./constants.js";
 
@@ -38,6 +39,37 @@ export async function proxy(): Promise<void> {
         },
       }).catch(() => {});
     };
+    await transport.start();
+    return;
+  }
+
+  // Paused — return a working MCP server with no tools
+  if (isPaused()) {
+    const transport = new StdioServerTransport();
+    const pausedInit = {
+      protocolVersion: "2025-03-26",
+      capabilities: { tools: {} },
+      serverInfo: { name: "cohvu", version: "0.1.0" },
+      instructions: "Cohvu is paused. The developer has temporarily disabled Cohvu. Do not attempt to use read or contribute.",
+    };
+    transport.onmessage = async (message) => {
+      const msg = message as { id?: string | number; method?: string };
+      if (msg.id === undefined) return;
+      switch (msg.method) {
+        case "initialize":
+          await transport.send({ jsonrpc: "2.0" as const, id: msg.id, result: pausedInit });
+          break;
+        case "tools/list":
+          await transport.send({ jsonrpc: "2.0" as const, id: msg.id, result: { tools: [] } });
+          break;
+        case "ping":
+          await transport.send({ jsonrpc: "2.0" as const, id: msg.id, result: {} });
+          break;
+        default:
+          await transport.send({ jsonrpc: "2.0" as const, id: msg.id, error: { code: -32600, message: "Cohvu is paused." } });
+      }
+    };
+    transport.onclose = () => process.exit(0);
     await transport.start();
     return;
   }

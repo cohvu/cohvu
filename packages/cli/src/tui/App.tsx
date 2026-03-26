@@ -283,6 +283,10 @@ export default function App() {
         const platforms = detectPlatformStatuses();
         dispatch({ type: 'SET_PLATFORMS', platforms });
 
+        // Load paused state
+        const { isPaused } = await import('../pause.js');
+        dispatch({ type: 'SET_PAUSED', paused: isPaused() });
+
         const flatProjects = deriveFlatProjectsFromMe(me);
         const activeProject = flatProjects.find(p => p.project_id === me.user.active_project_id) ?? flatProjects[0] ?? null;
         const projectId = activeProject?.project_id ?? null;
@@ -764,6 +768,12 @@ export default function App() {
       await runSetup();
       const platforms = detectPlatformStatuses();
       dispatch({ type: 'SET_PLATFORMS', platforms });
+    } else if (input === 'p') {
+      const { isPaused, setPaused } = await import('../pause.js');
+      const newPaused = !isPaused();
+      setPaused(newPaused);
+      dispatch({ type: 'SET_PAUSED', paused: newPaused });
+      showToast(newPaused ? 'Paused — agents won\'t see tools until resumed' : 'Resumed', 'success');
     } else if (input === 'l') {
       dispatch({ type: 'OPEN_MODAL', modal: { kind: 'confirm-logout' } });
     }

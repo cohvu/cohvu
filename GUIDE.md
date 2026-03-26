@@ -208,6 +208,40 @@ The Knowledge tab in the dashboard shows all active contributions, newest first.
 
 Deletion is permanent. The contribution is removed from the substrate and from search results.
 
+## Pause and resume
+
+Pause Cohvu when you don't want agents using it for a session — a throwaway prototype, a sensitive refactor, or just a break.
+
+**From the dashboard:** Press `p` on the You tab. Press `p` again to resume. The header shows "paused" from any tab.
+
+**From the command line:**
+
+```
+npx cohvu pause
+npx cohvu resume
+```
+
+When paused, agents don't see Cohvu's tools at all. They behave as if Cohvu was never installed. Your substrate, account, and configs are untouched — everything comes back on resume.
+
+The pause state is checked once when an agent session starts. If you pause mid-session, the current session continues normally. The next session sees the paused state.
+
+## Disconnect
+
+Remove Cohvu from all agents and sign out.
+
+```
+npx cohvu disconnect
+```
+
+This reverses everything `npx cohvu` set up:
+
+- Removes the `cohvu` MCP entry from every detected agent config
+- Removes instruction sections from CLAUDE.md, .mdc rules, etc.
+- Removes permissions (Claude Code settings.json)
+- Deletes your local credentials
+
+Your account and substrate on the server are not affected. Run `npx cohvu` to sign back in and reconnect everything.
+
 ## API key
 
 Your API key is stored at `~/.cohvu/credentials` with `0600` permissions (owner read/write only). It's created during sign-in and used for all API communication.
@@ -228,6 +262,14 @@ Your trial ended or payment failed. Run `npx cohvu` and check the Billing tab.
 
 Check that the MCP config exists for your agent. Run `npx cohvu` to re-run setup. The setup is idempotent and will fix missing configs.
 
+### Agent says "Cohvu is paused"
+
+You or someone on your machine ran `npx cohvu pause`. Run `npx cohvu resume` or press `p` on the You tab in the dashboard.
+
 ### Session expired
 
 Run `npx cohvu`. If your API key is no longer valid, it will detect this and start a new sign-in flow.
+
+### Want to remove Cohvu completely
+
+Run `npx cohvu disconnect`. This removes all configs and signs you out. Run `npx cohvu` to reconnect.

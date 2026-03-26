@@ -17,9 +17,9 @@ is the way it is, contribute it. Always include the why. Your context \
 window could end at any moment. Don't wait.
 
 Do NOT contribute code changes, implementation details that are obvious \
-from the code itself, or narration of what you just did. Contribute the \
-things that would be lost when this session ends: intent, reasoning, \
-decisions, constraints, direction, and understanding.`;
+from the code itself, or narration of what you're doing or about to do. \
+Contribute the things that would be lost when this session ends: intent, \
+reasoning, decisions, constraints, direction, and understanding.`;
 
 export const MARKER_START = "<!-- cohvu:start -->";
 export const MARKER_END = "<!-- cohvu:end -->";

@@ -385,7 +385,8 @@ function ModalContent({ modal, state }: { modal: NonNullable<AppState['modal']>;
       );
     }
 
-    case 'invite-link':
+    case 'invite-link': {
+      const seatCount = state.members.length;
       return (
         <>
           <Box>
@@ -395,12 +396,15 @@ function ModalContent({ modal, state }: { modal: NonNullable<AppState['modal']>;
           <Box height={1} />
           <Text>{modal.url}</Text>
           <Box height={1} />
+          <Text color="gray" dimColor>  {seatCount} seat{seatCount !== 1 ? 's' : ''} · ${seatCount * 34}/mo · each join adds $34/mo</Text>
+          <Box height={1} />
           {state.copiedFeedback
             ? <Text color="green">  copied!</Text>
             : <Box><Text dimColor>  c</Text><Text color="gray"> copy   </Text><Text dimColor>o</Text><Text color="gray"> open in browser</Text></Box>
           }
         </>
       );
+    }
 
     case 'configure-sso': {
       const ssoRoles = ['member', 'viewer', 'admin'];

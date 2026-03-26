@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
-// Cohvu CLI — one command.
+// Cohvu CLI
 //
-//   npx cohvu   — TUI dashboard (interactive) or MCP proxy (piped by agent)
+//   npx cohvu              — TUI dashboard (interactive) or MCP proxy (piped)
+//   npx cohvu pause        — pause Cohvu (agents won't see tools)
+//   npx cohvu resume       — resume Cohvu
+//   npx cohvu disconnect   — remove Cohvu from all agents and sign out
 
 import { createInterface } from "readline";
 import chalk from "chalk";
@@ -15,14 +18,41 @@ import { ApiClient, ApiError } from "./api.js";
 import { launchDashboard } from "./tui/index.js";
 import { DEFAULT_BASE_URL } from "./constants.js";
 
-if (process.stdin.isTTY) {
-  enterDashboard().catch((error: unknown) => {
-    process.stderr.write(`Failed: ${error}\n`);
+const subcommand = process.argv[2];
+
+if (subcommand === "pause") {
+  import("./pause.js").then(({ setPaused }) => {
+    setPaused(true);
+    console.log(chalk.dim("  cohvu paused — agents won't see tools until resumed"));
+  });
+} else if (subcommand === "resume") {
+  import("./pause.js").then(({ setPaused }) => {
+    setPaused(false);
+    console.log(chalk.dim("  cohvu resumed"));
+  });
+} else if (subcommand === "disconnect") {
+  import("./teardown.js").then(async ({ runTeardown }) => {
+    const result = await runTeardown();
+    const removed = result.platforms.filter(p => p.mcp === "ok" || p.instructions === "ok");
+    if (removed.length > 0) {
+      for (const p of removed) {
+        console.log(chalk.dim(`  removed from ${p.name}`));
+      }
+    }
+    console.log(chalk.dim("  disconnected — run npx cohvu to reconnect"));
+  });
+} else if (subcommand && subcommand !== "--help") {
+  console.log(chalk.dim(`  unknown command: ${subcommand}`));
+  console.log(chalk.dim("  usage: npx cohvu [pause | resume | disconnect]"));
+  process.exit(1);
+} else if (!process.stdin.isTTY) {
+  proxy().catch((error: unknown) => {
+    process.stderr.write(`Cohvu CLI failed: ${error}\n`);
     process.exit(1);
   });
 } else {
-  proxy().catch((error: unknown) => {
-    process.stderr.write(`Cohvu CLI failed: ${error}\n`);
+  enterDashboard().catch((error: unknown) => {
+    process.stderr.write(`Failed: ${error}\n`);
     process.exit(1);
   });
 }
