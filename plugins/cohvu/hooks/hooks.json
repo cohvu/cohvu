@@ -1,0 +1,46 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "SessionStart"] }]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "UserPromptSubmit"] }]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "PreToolUse"] }]
+      }
+    ],
+    "TaskCreated": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "TaskCreated"] }]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "Stop"] }]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "SessionEnd"] }]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "PostCompact"] }]
+      }
+    ]
+  }
+}

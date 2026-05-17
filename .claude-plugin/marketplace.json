@@ -1,0 +1,19 @@
+{
+  "name": "cohvu",
+  "owner": {
+    "name": "Cohvu",
+    "url": "https://cohvu.com"
+  },
+  "metadata": {
+    "description": "Cohvu — the living substrate of project understanding for AI-native development.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "cohvu",
+      "source": "./plugins/cohvu",
+      "description": "Substrate-aware reasoning, ambient hooks, and the Cohvu subagent for Claude Code.",
+      "category": "knowledge"
+    }
+  ]
+}

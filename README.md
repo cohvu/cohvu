@@ -1,57 +1,65 @@
-# cohvu
+# Cohvu
 
-Continuous understanding for AI-native development.
+**The living substrate of project understanding for AI-native development.**
 
-Your agents read from and contribute to a knowledge substrate that gets sharper with every session. Intent, reasoning, decisions, constraints, direction — the things that aren't in the code. Open a fresh context window. Your agent already knows where you are.
+Code tells an agent *what*. It never tells it *why* — the decisions, the
+constraints discovered the hard way, the intent that shaped the
+architecture, the alternatives that were ruled out. That reasoning lives
+in someone's context window, and without a substrate it's gone the
+moment the session ends.
 
-## Get started
+Cohvu is that substrate. It captures the *why* from natural work,
+maintains its own coherence, and surfaces it back into the session where
+the work is happening. Every agent's session works through the
+accumulated reasoning of every prior session.
 
-```
-npx cohvu
-```
+This repository is the **Claude Code plugin marketplace** for Cohvu.
 
-One command. Auto-detects and configures every agent on your machine. Sign in, create a project, and your agents are connected.
+## Install
 
-## How it works
-
-Two tools. `read` and `contribute`. That's the entire interface.
-
-**read** — Before starting work, the agent describes what it's about to do. Cohvu returns the understanding from the substrate that matches that task — verbatim, from previous agents and developers. Not a dump. What matters for what it's about to do.
-
-**contribute** — As the agent works, it contributes understanding in the moment. Decisions made, constraints discovered, intent behind changes. Contributions are embedded, organized, and deduped. Contradicted understanding is superseded. The substrate reflects the current state of the project's thinking.
-
-No LLM in the system generates content. Every word returned was written by an agent or a developer. Hallucination is structurally impossible — LLMs search and judge internally, but never write the output.
-
-## Supported agents
-
-- Claude Code
-- Cursor
-- Windsurf
-- Cline
-- Codex
-
-All configured automatically by `npx cohvu`.
-
-## Commands
+**1. Install the `cohvu` CLI and authenticate** (one-time, per machine):
 
 ```
-npx cohvu              # dashboard or MCP proxy
-npx cohvu pause        # pause — agents won't see tools
-npx cohvu resume       # resume
-npx cohvu disconnect   # remove from all agents, sign out
+npm install -g cohvu
+cohvu auth
 ```
 
-## Pricing
+**2. Add this marketplace and install the plugin** (inside Claude Code):
 
-**Individual** — $19/mo. One developer, unlimited projects, all agents.
+```
+/plugin marketplace add cohvu/cohvu
+/plugin install cohvu@cohvu
+```
 
-**Team** — $34/seat/mo. Shared substrate across agents and people. SSO/OIDC. Role-based access (admin, member, viewer).
+**3. Link a project** — run this once in a repo you want Cohvu on:
 
-7 day free trial, no card required.
+```
+cohvu init
+```
 
-## Guide
+That writes a `.cohvu` file (commit it — teammates inherit the link).
+Cohvu is active only in repos that have one.
 
-Setup, teams, roles, SSO, billing, and how the substrate works — **[GUIDE.md](GUIDE.md)**
+## What the plugin gives Claude Code
+
+- **The Cohvu subagent** — Claude Code's main loop dispatches to it via
+  the Task tool for any substrate work: questions about past decisions,
+  sweeps across what the project knows, recording or curating
+  understanding.
+- **Ambient hooks** — every session event (a prompt submitted, a tool
+  about to run, a turn finishing, a session opening or compacting) flows
+  through Cohvu's substrate-aware reasoner. It's quiet by default and
+  intelligent when it speaks — delivering the project's *why* into the
+  moment the agent is about to act.
+- **The `cohvu` MCP server** — direct `substrate` actions and the Cohvu
+  agent, for when Claude Code already knows what it wants to do.
+
+## How it stays honest
+
+Code stays in code. Source artifacts stay in their files. The substrate
+stores *understanding* — and every entry carries a trail of every event
+that touched it, with provenance and reasoning. Privacy and audit are
+properties of the architecture, not features bolted on.
 
 ## Links
 
@@ -60,4 +68,4 @@ Setup, teams, roles, SSO, billing, and how the substrate works — **[GUIDE.md](
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE).

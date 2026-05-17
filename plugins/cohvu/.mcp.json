@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "cohvu": {
+      "type": "stdio",
+      "command": "cohvu",
+      "args": ["mcp-stdio"]
+    }
+  }
+}
