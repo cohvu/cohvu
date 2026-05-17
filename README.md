@@ -42,17 +42,15 @@ Cohvu is active only in repos that have one.
 
 ## What the plugin gives Claude Code
 
-- **The Cohvu subagent** — Claude Code's main loop dispatches to it via
-  the Task tool for any substrate work: questions about past decisions,
-  sweeps across what the project knows, recording or curating
-  understanding.
 - **Ambient hooks** — every session event (a prompt submitted, a tool
   about to run, a turn finishing, a session opening or compacting) flows
   through Cohvu's substrate-aware reasoner. It's quiet by default and
   intelligent when it speaks — delivering the project's *why* into the
   moment the agent is about to act.
-- **The `cohvu` MCP server** — direct `substrate` actions and the Cohvu
-  agent, for when Claude Code already knows what it wants to do.
+- **The `substrate` tool** — the `cohvu` MCP server exposes one tool,
+  `substrate(action)`: search, read, contribute, flag, and curate the
+  project's understanding directly. The agent explores the substrate
+  itself, whenever it wants.
 
 ## How it stays honest
 

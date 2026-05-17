@@ -12,7 +12,7 @@
     {
       "name": "cohvu",
       "source": "./plugins/cohvu",
-      "description": "Substrate-aware reasoning, ambient hooks, and the Cohvu subagent for Claude Code.",
+      "description": "Ambient substrate-aware hooks and the cohvu substrate tool for Claude Code.",
       "category": "knowledge"
     }
   ]

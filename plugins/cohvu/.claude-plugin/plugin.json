@@ -1,6 +1,6 @@
 {
   "name": "cohvu",
-  "description": "Substrate-aware reasoning, ambient hooks, and the Cohvu subagent for Claude Code. Every session works through the project's accumulated understanding.",
+  "description": "Cohvu's ambient substrate-aware hooks and the cohvu substrate MCP tool. Cohvu works alongside the agent and gives it direct access to the project's accumulated understanding.",
   "version": "0.1.0",
   "author": {
     "name": "Cohvu",
