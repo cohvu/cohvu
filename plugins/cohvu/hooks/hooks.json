@@ -3,43 +3,43 @@
     "SessionStart": [
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "SessionStart"] }]
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "SessionStart", "--host", "claude-code"] }]
       }
     ],
     "UserPromptSubmit": [
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "UserPromptSubmit"] }]
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "UserPromptSubmit", "--host", "claude-code"] }]
       }
     ],
     "PreToolUse": [
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "PreToolUse"] }]
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "PreToolUse", "--host", "claude-code"] }]
       }
     ],
     "TaskCreated": [
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "TaskCreated"] }]
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "TaskCreated", "--host", "claude-code"] }]
       }
     ],
     "Stop": [
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "Stop"] }]
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "Stop", "--host", "claude-code"] }]
       }
     ],
     "SessionEnd": [
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "SessionEnd"] }]
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "SessionEnd", "--host", "claude-code"] }]
       }
     ],
     "PostCompact": [
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "PostCompact"] }]
+        "hooks": [{ "type": "command", "command": "cohvu", "args": ["hook-forward", "PostCompact", "--host", "claude-code"] }]
       }
     ]
   }
